@@ -21,8 +21,9 @@ public class Layer {
             for(int j =0; j<weightSum; j++){
                 weights[j] = r.nextFloat(-0.5f,0.5f);
             }
-            neurons[i] = new Neuron(weights,r.nextFloat(0.1f,0.5f));
+            neurons[i] = new Neuron(weights,r.nextFloat(0.1f,0.5f),this);
         }
+        deltas = new float[neuronSum];
     }
 
     public float[] layerFeedForward(float[] inputs) throws IllegalArgumentException {
