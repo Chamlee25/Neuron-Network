@@ -1,19 +1,34 @@
 package attemp3;
 
 
+import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args){
-        Network n = new Network();
-        float[] input = {0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f,0f};
-        float[] expectedOutput = {0f,1f};
-        float[] firstOutput = n.learnWithOutput(input,expectedOutput,0.01f);
+    public static void main(String[] args) throws IOException {
+        Network net = new Network(3,28,28,10,28);
+        MnistLoader ml = new MnistLoader();
+        Mnist m;
+        float[] result;
         for(int i =0; i<1000; i++){
-            n.learnWithOutput(input,expectedOutput,0.01f);
+            m = ml.getNextPictureData();
+            result = net.learnWithOutput(m.data, m.actualValue,0.01f);
+            if(i%10==0){
+                System.out.println(m.actualvalue);
+                for(int j =0; j< result.length;j++){
+                    System.out.println(j+ ": " +result[j]+"%");
+                }
+            }
         }
-        float[] thirdOutput = n.testOutput(input);
-        System.out.print("First case:\n0: " +firstOutput[0] + "%\n1: " +firstOutput[1] +"%\n");
 
-        System.out.print("Second case:\n0: " +thirdOutput[0] + "%\n1: " +thirdOutput[1] + "%");
+
+
+
+
+
+
+
+
+
     }
 }
