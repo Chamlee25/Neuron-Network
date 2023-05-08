@@ -49,7 +49,7 @@ public class Network {
         float[] result = lastLayer.layerFeedForwardFromPrevious(values);
         float[] deltas = new float[expectedOutput.length];
         for(int i =0; i<expectedOutput.length; i++){
-            deltas[i] = (result[i]-expectedOutput[i])* Neuron.sigmoidDerivative(expectedOutput[0]);
+            deltas[i] = (expectedOutput[i]-result[i])* Neuron.sigmoidDerivative(expectedOutput[0]);
         }
         lastLayer.deltas = deltas;
 
