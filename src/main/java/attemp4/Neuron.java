@@ -4,15 +4,15 @@ package attemp4;
 
 public class Neuron {
 
-    public float[] weights;
-    public float bias;
-    public float[] inputs;
+    public double[] weights;
+    public double bias;
+    public double[] inputs;
 
     public Layer currentLayer;
 
 
-    public Neuron(float[] weights, float bias, Layer currentLayer) {
-        this.weights = new float[weights.length];
+    public Neuron(double[] weights, double bias, Layer currentLayer) {
+        this.weights = new double[weights.length];
         for (int i = 0; i < weights.length; i++) {
             this.weights[i] = weights[i];
         }
@@ -20,12 +20,12 @@ public class Neuron {
         this.currentLayer = currentLayer;
     }
 
-    public float feedForward(float[] inputs, boolean activate) throws IllegalArgumentException {
+    public double feedForward(double[] inputs, boolean activate) throws IllegalArgumentException {
         if (inputs.length != weights.length) {
             throw new IllegalArgumentException("Neuron input array lenght must be " + weights.length + " but got " + inputs.length);
         }
         this.inputs = inputs;
-        float sum = 0f;
+        double sum = 0f;
         for (int i = 0; i < weights.length; i++) {
             sum += weights[i] * inputs[i];
         }
@@ -39,7 +39,7 @@ public class Neuron {
 
     }
 
-    public void updateLastNeuron(float delta, float learningRate){
+    public void updateLastNeuron(double delta, double learningRate){
         for(int i =0; i< weights.length; i++){
             weights[i] += delta*learningRate*inputs[i];
         }
@@ -50,17 +50,17 @@ public class Neuron {
 
 
 
-    private static float relu(float x) {
+    public static double relu(double x) {
         return Math.max(0f, x);
     }
 
-    private static double[] softmax(double[] input) {
+    public static double[] softmax(double[] input) {
         double[] output = new double[input.length];
-        double sum = 0.0;
+        double sum = 0.0f;
 
         // Výpočet exponentů a sumy exponentů
         for (int i = 0; i < input.length; i++) {
-            output[i] = Math.exp(input[i]);
+            output[i] = (double) Math.exp(input[i]);
             sum += output[i];
         }
 
@@ -73,7 +73,7 @@ public class Neuron {
     }
 
 
-    public static float reluDerivative(float x) {
+    public static double reluDerivative(double x) {
         return x > 0f ? 1f : 0f;
     }
 }

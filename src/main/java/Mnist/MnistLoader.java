@@ -17,9 +17,9 @@ public class MnistLoader {
         if((line = br.readLine()) != null){
             String[] values = line.split(",");
             int actualValue = Integer.parseInt(values[0]);
-            float[] data = new float[values.length - 1];
+            double[] data = new double[values.length - 1];
             for (int i = 1; i < values.length; i++) {
-                data[i - 1] = Float.parseFloat(values[i]);
+                data[i - 1] = double.parsedouble(values[i]);
             }
             return new Mnist(data,actualValue);
         }
@@ -31,23 +31,3 @@ public class MnistLoader {
 
 
 
-class Mnist{
-    public float[] data;
-    public float[] actualValue;
-    public int actualvalue;
-    public boolean empty;
-
-
-    public Mnist(float[] data, int actualValue) {
-        this.data = data;
-        this.actualValue = new float[]{0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f};
-        this.actualValue[actualValue] = (float) actualValue;
-        this.actualvalue = actualValue;
-        empty =false;
-    }
-
-    public Mnist(){
-        empty =true;
-    }
-
-}
