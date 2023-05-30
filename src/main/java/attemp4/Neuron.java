@@ -72,6 +72,23 @@ public class Neuron {
         return output;
     }
 
+    public static double[] softmaxDerivative(double[] softmaxOutput) {
+        int N = softmaxOutput.length;
+        double[] derivative = new double[N];
+
+        for (int i = 0; i < N; i++) {
+            double sumExp = 0.0;
+            for (int j = 0; j < N; j++) {
+                sumExp += Math.exp(softmaxOutput[j]);
+            }
+            double softmax_i = Math.exp(softmaxOutput[i]) / sumExp;
+
+            derivative[i] = softmax_i * (1 - softmax_i);
+        }
+
+        return derivative;
+    }
+
 
     public static double reluDerivative(double x) {
         return x > 0f ? 1f : 0f;

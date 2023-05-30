@@ -18,9 +18,9 @@ public class Layer {
         for(int i =0; i<neuronSum; i++){
             double[] weights = new double[weightSum];
             for(int j =0; j<weightSum; j++){
-                weights[j] = r.nextdouble(-0.5f,0.5f);
+                weights[j] = r.nextDouble(-0.5f,0.5f);
             }
-            neurons[i] = new Neuron(weights,r.nextdouble(0.1f,0.5f),this);
+            neurons[i] = new Neuron(weights,r.nextDouble(0.1f,0.5f),this);
         }
         deltas = new double[neuronSum];
     }

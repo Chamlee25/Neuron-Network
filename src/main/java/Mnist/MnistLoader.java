@@ -19,7 +19,7 @@ public class MnistLoader {
             int actualValue = Integer.parseInt(values[0]);
             double[] data = new double[values.length - 1];
             for (int i = 1; i < values.length; i++) {
-                data[i - 1] = double.parsedouble(values[i]);
+                data[i - 1] = Double.parseDouble(values[i]);
             }
             return new Mnist(data,actualValue);
         }

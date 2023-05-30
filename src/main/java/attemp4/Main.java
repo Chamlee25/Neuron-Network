@@ -12,7 +12,13 @@ public class Main {
         Mnist m = ml.getNextPictureData();
         double[] test = net.testOutput(m.data);
         for(int i =0; i<10; i++){
-            System.out.println("Case "+ i + ": " + test[i]);
+            System.out.println("Case "+ i + ": " + String.format("%.15f",test[i]));
+        }
+        System.out.println(m.actualvalue);
+        net.learn(m.data,m.actualValue,1);
+        double[] test2 = net.testOutput(m.data);
+        for(int i =0; i<10; i++){
+            System.out.println("Case "+ i + ": " + String.format("%.15f",test2[i]));
         }
 
 
